@@ -3,13 +3,17 @@
   <head>
     <title>RailsPerso</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag 'favicon.ico'%>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind" %>
+    <%= stylesheet_link_tag "application" %>
   </head>
 
-  <body>
+  <body class="container bg-cover bg-no-repeat bg-center h-screen mx-auto" style="background-image: url('https://files.123freevectors.com/wp-content/original/131756-abstract-red-and-white-polygon-pattern-background.jpg');  background-attachment: fixed;">
     <%= yield %>
   </body>
 </html>
