@@ -1,0 +1,15 @@
+<div class="flex justify-between items-center mt-40">
+    <div>
+        <% if @user %>
+        <p class="text-8xl w-1/2">Welcome <%= @user.username %></p>
+        <% else %>
+        <p class="text-8xl">Welcome to my sandbox !</p>
+        <% end %>
+        <div class="mt-24 w-1/2">
+            <p>This website is a playground for the sake of training my skill in RubyOnRails ( and english too... ). You can try out all the features I've coded to get an idea of my profile as a developer. </p>
+        </div>
+    </div>
+    <div>
+        <img class="w-full" src="https://assets-global.website-files.com/5d9bc5d562ffc2869b470941/5e20a1895ad86c8f871e3f90_icon-ruby-tech.png" alt="ruby logo" />
+    </div>
+</div>

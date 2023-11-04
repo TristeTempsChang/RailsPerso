@@ -6,6 +6,17 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
+
   # root "posts#index"
-  root to: "home#home"
+  root to: "home#index"
+
+  # Routes for login and sessions cookies for user
+  resources :sessions
+
+  delete "logout" => "sessions#logout", as: :logout
+
+
+  # Routes for creation, modification and deletion of users
+  resources :users
+
 end

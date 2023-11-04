@@ -20,6 +20,7 @@
     background-size: cover;
 }
 */
+
 .font {
     font-family: 'Montserrat', sans-serif;
 }
@@ -40,12 +41,11 @@
     }
 }
 
-.page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+.zoom {
+    transition: transform 400ms;
+    &:hover {
+        transform: scale(1.15);
+    }
 }
 
 @import "font-awesome";
