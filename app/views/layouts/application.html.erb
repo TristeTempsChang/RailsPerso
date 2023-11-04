@@ -10,10 +10,43 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind" %>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "application?v=1" %>
   </head>
-
-  <body class="container bg-cover bg-no-repeat bg-center h-screen mx-auto" style="background-image: url('https://files.123freevectors.com/wp-content/original/131756-abstract-red-and-white-polygon-pattern-background.jpg');  background-attachment: fixed;">
-    <%= yield %>
+  
+  <% if current_page?(new_session_path) || current_page?(new_user_path)%>
+  <body class="bg-stone-200">
+  <%= yield %>
   </body>
+  <% else %>
+  <body class="container bg-cover bg-no-repeat bg-center h-screen mx-auto" style="background-image: url('https://files.123freevectors.com/wp-content/original/131756-abstract-red-and-white-polygon-pattern-background.jpg');  background-attachment: fixed;">
+    <header class="mt-10">
+        <div class="flex justify-between">
+            <div class="flex items-center">
+                <h2 class="text-4xl font-semibold font mr-4">RailsPerso</h2>
+                <img class="w-20 h-auto ml-4" src="https://www.svgrepo.com/show/376345/rails.svg" alt="rails logo" />
+            </div>
+            <div class="flex items-center text-2xl font text-[#832020]">
+                <a href="<%= root_path %>"><p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Home</<p></a>
+                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Mail</<p>
+                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">CRUD test</<p>
+                <% if @user %>
+                <%= button_to "Logout", logout_path, method: :delete, class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+                <% else %>
+                <%= button_to "Login", new_session_path, method: :get, class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+                <% end %>
+            </div>
+        </div>
+    </header>
+    <%= yield %>
+    <div class="mt-40">
+        <footer>
+            <div class="text-6xl flex justify-around">
+                <div class="cursor-pointer zoom"><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></div>
+                <div class="cursor-pointer zoom"><a href="https://twitter.com/?lang=fr"><i class="fa-brands fa-twitter"></i></a></div>
+                <div class="cursor-pointer zoom"><a href="https://www.facebook.com/?locale=fr_FR"><i class="fa-brands fa-facebook"></i></a></div>
+            </div>
+        </footer>
+    </div>
+  </body>
+  <% end %>
 </html>
