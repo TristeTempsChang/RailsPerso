@@ -27,8 +27,8 @@
             </div>
             <div class="flex items-center text-2xl font text-[#832020]">
                 <a href="<%= root_path %>"><p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Home</<p></a>
-                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Mail</<p>
-                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">CRUD test</<p>
+                <a href="<%= crud_index_path %>"><p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Product</<p></a>
+                <a href="<%= new_contact_path %>"><p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Contact</<p></a>
                 <% if @user %>
                 <%= button_to "Logout", logout_path, method: :delete, class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
                 <% else %>
@@ -39,11 +39,18 @@
     </header>
     <%= yield %>
     <div class="mt-40">
-        <footer>
-            <div class="text-6xl flex justify-around">
-                <div class="cursor-pointer zoom"><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></div>
-                <div class="cursor-pointer zoom"><a href="https://twitter.com/?lang=fr"><i class="fa-brands fa-twitter"></i></a></div>
-                <div class="cursor-pointer zoom"><a href="https://www.facebook.com/?locale=fr_FR"><i class="fa-brands fa-facebook"></i></a></div>
+        <footer class="fooooter">
+            <br />
+            <br />
+            <div class="flex justify-around lg:text-6xl sm:text-8xl">
+              <a href="https://github.com/TristeTempsChang"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/tristan-tran-13a20a241/"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <br />
+            <br />
+            <div class="text-center flex flex-col items-center">
+              <p class="sm:text-4xl lg:text-base mb-10">TRAN Tristan 2023</p>
             </div>
         </footer>
     </div>

@@ -1,0 +1,3 @@
+class Crud < ApplicationRecord
+
+end
