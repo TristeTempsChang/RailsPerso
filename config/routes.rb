@@ -19,4 +19,11 @@ Rails.application.routes.draw do
   # Routes for creation, modification and deletion of users
   resources :users
 
+  #Routes for crud page
+  resources :crud
+
+  #Routes for contact
+  resources :contacts, only: [:new, :create]
+
+
 end
