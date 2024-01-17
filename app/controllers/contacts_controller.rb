@@ -1,7 +1,10 @@
 class ContactsController < ApplicationController
 
     def new
-        @contact = Contact.new
+      if session[:user_id]
+        @user = User.find_by(id: session[:user_id])
+      end
+      @contact = Contact.new
     end
 
     def create

@@ -1,59 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsPerso</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= favicon_link_tag 'favicon.ico'%>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind" %>
-    <%= stylesheet_link_tag "application?v=1" %>
-  </head>
-  
-  <% if current_page?(new_session_path) || current_page?(new_user_path)%>
+
+<head>
+  <title>RailsPerso</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= favicon_link_tag 'favicon.ico' %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind" %>
+  <%= stylesheet_link_tag "application?v=1" %>
+</head>
+
+<% if current_page?(new_session_path) || current_page?(new_user_path) %>
   <body class="bg-stone-200">
-  <%= yield %>
-  </body>
-  <% else %>
-  <body class="container bg-cover bg-no-repeat bg-center h-screen mx-auto" style="background-image: url('https://files.123freevectors.com/wp-content/original/131756-abstract-red-and-white-polygon-pattern-background.jpg');  background-attachment: fixed;">
-    <header class="mt-10">
-        <div class="flex justify-between">
-            <div class="flex items-center">
-                <h2 class="text-4xl font-semibold font mr-4">RailsPerso</h2>
-                <img class="w-20 h-auto ml-4" src="https://www.svgrepo.com/show/376345/rails.svg" alt="rails logo" />
-            </div>
-            <div class="flex items-center text-2xl font text-[#832020]">
-                <a href="<%= root_path %>"><p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Home</<p></a>
-                <a href="<%= crud_index_path %>"><p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Product</<p></a>
-                <a href="<%= new_contact_path %>"><p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Contact</<p></a>
-                <% if @user %>
-                <%= button_to "Logout", logout_path, method: :delete, class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
-                <% else %>
-                <%= button_to "Login", new_session_path, method: :get, class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
-                <% end %>
-            </div>
-        </div>
-    </header>
     <%= yield %>
-    <div class="mt-40">
-        <footer class="fooooter">
-            <br />
-            <br />
-            <div class="flex justify-around lg:text-6xl sm:text-8xl">
-              <a href="https://github.com/TristeTempsChang"><i class="fa-brands fa-github"></i></a>
-              <a href="https://www.linkedin.com/in/tristan-tran-13a20a241/"><i class="fa-brands fa-linkedin"></i></a>
-              <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-            <br />
-            <br />
-            <div class="text-center flex flex-col items-center">
-              <p class="sm:text-4xl lg:text-base mb-10">TRAN Tristan 2023</p>
-            </div>
-        </footer>
-    </div>
   </body>
+<% else %>
+  <% if current_page?(crud_index_path) || current_page?(new_contact_path) %>
+    <body class="bg-cover bg-no-repeat bg-center"
+      style="background-image: url('https://files.123freevectors.com/wp-content/original/131756-abstract-red-and-white-polygon-pattern-background.jpg');  background-attachment: fixed; margin: 0px 9.3rem 0px;">
+      <header class="mt-10">
+        <div class="flex justify-between">
+          <div class="flex items-center">
+            <h2 class="text-4xl font-semibold font mr-4">RailsPerso</h2>
+            <img class="w-20 h-auto ml-4" src="https://www.svgrepo.com/show/376345/rails.svg" alt="rails logo" />
+          </div>
+          <% if current_page?(new_contact_path) %>
+            <div class="flex items-center text-2xl font text-[#832020]">
+              <a href="<%= root_path %>">
+                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Home</p>
+              </a>
+              <a href="<%= crud_index_path %>">
+                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Product</p>
+              </a>
+              <% if @user %>
+                <%= button_to "Logout", logout_path, method: :delete,
+                  class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+              <% else %>
+                <%= button_to "Login", new_session_path, method: :get,
+                  class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="flex items-center text-2xl font text-[#832020]">
+              <a href="<%= root_path %>">
+                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Home</p>
+              </a>
+              <a href="<%= new_contact_path %>">
+                <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Contact</p>
+              </a>
+              <% if @user %>
+                <%= button_to "Logout", logout_path, method: :delete,
+                  class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+              <% else %>
+                <%= button_to "Login", new_session_path, method: :get,
+                  class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </header>
+  <% else %>
+    <body class="container bg-cover bg-no-repeat bg-center h-screen mx-auto"
+      style="background-image: url('https://files.123freevectors.com/wp-content/original/131756-abstract-red-and-white-polygon-pattern-background.jpg');  background-attachment: fixed;">
+      <header class="mt-10">
+        <div class="flex justify-between">
+          <div class="flex items-center">
+            <h2 class="text-4xl font-semibold font mr-4">RailsPerso</h2>
+            <img class="w-20 h-auto ml-4" src="https://www.svgrepo.com/show/376345/rails.svg" alt="rails logo" />
+          </div>
+          <div class="flex items-center text-2xl font text-[#832020]">
+            <a href="<%= root_path %>">
+              <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Home</p>
+            </a>
+            <% if @user %>
+              <a href="<%= crud_index_path %>">
+            <% else %>
+              <a href="<%= new_session_path %>">
+            <% end %>
+              <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Product</p>
+            </a>
+            <% if @user %>
+              <a href="<%= new_contact_path %>">
+            <% else %>
+              <a href="<%= new_session_path %>">
+            <% end %>
+              <p class="mr-20 hover:text-red-500 duration-500 cursor-pointer">Contact</p>
+            </a>
+            <% if @user %>
+              <%= button_to "Logout", logout_path, method: :delete,
+                class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+            <% else %>
+              <%= button_to "Login", new_session_path, method: :get,
+                class: "bg-[#832020] hover:bg-red-500 duration-500 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+            <% end %>
+          </div>
+        </div>
+      </header>
+  <% end %>
+      <%= yield %>
+      <div class="mt-40">
+        <footer class="fooooter">
+          <br />
+          <br />
+          <div class="flex justify-around lg:text-6xl sm:text-8xl">
+            <a href="https://github.com/TristeTempsChang"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/tristan-tran-13a20a241/"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+          <br />
+          <br />
+          <div class="text-center flex flex-col items-center">
+            <p class="sm:text-4xl lg:text-base mb-10">TRAN Tristan 2023</p>
+          </div>
+        </footer>
+      </div>
+    </body>
   <% end %>
 </html>
