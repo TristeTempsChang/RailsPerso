@@ -1,3 +1,4 @@
+# crud.rb
 class Crud < ApplicationRecord
-
-end
+   belongs_to :creator, class_name: 'User', foreign_key: 'creationBy'
+end  

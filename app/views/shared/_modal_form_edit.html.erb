@@ -1,0 +1,25 @@
+<div id="updateModal" class="hidden fixed inset-0 bg-black bg-opacity-50 overflow-y-auto h-full w-full">
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="flex justify-end">
+            <button id="closeModalUpdate" class="text-black">X</button>
+        </div>
+        <h1 class="text-center font-semibold text-lg mb-4">Update form</h1>
+        <%= form_with(model: @crud, url: update_from_index_crud_index_path, method: :put) do |f| %>
+            <div class="mb-4">
+                <%= f.label :nom, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= f.text_field :nom, class: "rounded-lg border-gray-300" %>
+            </div>
+            <div class="mb-8">
+                <%= f.label :nombre, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= f.number_field :nombre, class: "rounded-lg border-gray-300" %>
+            </div>
+            <%= f.hidden_field :date, value: Date.current %>
+            <%= f.hidden_field :creationBy, value: @user.id %>
+            <div class="flex items-center justify-center">
+                <%= f.submit "Ajouter", class: "bg-green-600 text-white p-3 rounded-lg" %>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<%= javascript_include_tag 'modal' %>

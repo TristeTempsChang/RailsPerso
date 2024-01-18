@@ -20,7 +20,13 @@ Rails.application.routes.draw do
   resources :users
 
   #Routes for crud page
-  resources :crud
+  resources :crud do
+    collection do
+      post 'create_from_index'
+      delete 'delete_from_index'
+      put 'update_from_index'
+    end
+  end
 
   #Routes for contact
   resources :contacts, only: [:new, :create]
