@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalUpdate = document.getElementById("updateModal");
   const openModalButtonUpdate = document.getElementById("openModalUpdate");
   const closeModalButtonUpdate = document.getElementById("closeModalUpdate");
+  let selectedProductId;
 
   openModalButtonDel.disabled = true
   openModalButtonUpdate.disabled = true
@@ -16,6 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   checkboxes.forEach(chk => {
     chk.addEventListener('change', () => {
       if (chk.checked) {
+        selectedProductId = chk.value;
+        openModalButtonUpdate.addEventListener("click", () => {
+          modalUpdate.classList.remove("hidden");
+          document.getElementById("product-id-input").value = selectedProductId;
+        });
         checkboxes.forEach(otherChk => {
           if (otherChk !== chk) otherChk.checked = false;
         });
@@ -23,15 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
         openModalButtonUpdate.disabled = false;
         openModalButtonDel.classList.replace('bg-red-200', 'bg-red-500');
         openModalButtonDel.classList.replace('text-slate-100', 'text-white');
-        openModalButtonUpdate.classList.replace('bg-orange-200', 'bg-orange-500');
+        openModalButtonUpdate.classList.replace('bg-slate-300', 'bg-black');
         openModalButtonUpdate.classList.replace('text-slate-100', 'text-white');
-        console.log(chk);
       } else {
         openModalButtonDel.disabled = true;
         openModalButtonUpdate.disabled = true;
         openModalButtonDel.classList.replace('bg-red-500', 'bg-red-200');
         openModalButtonDel.classList.replace('text-white', 'text-slate-100');
-        openModalButtonUpdate.classList.replace('bg-orange-500', 'bg-orange-200');
+        openModalButtonUpdate.classList.replace('bg-black', 'bg-slate-300');
         openModalButtonUpdate.classList.replace('text-white', 'text-slate-100');
       }
     });
@@ -65,10 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  openModalButtonUpdate.addEventListener("click", () => {
-    modalUpdate.classList.remove("hidden");
-  });
-
   closeModalButtonUpdate.addEventListener("click", () => {
     modalUpdate.classList.add("hidden");
   });
@@ -82,5 +83,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteSubmitButton = document.getElementById("delete-submit");
   deleteSubmitButton.addEventListener("click", () => {
     document.getElementById("delete-form").submit();
+  });
+
+  const originalProductRows = Array.from(document.querySelectorAll(".product-row"));
+
+  const searchInput = document.getElementById("searchInput");
+
+  searchInput.addEventListener("input", function () {
+    const searchValue = searchInput.value.trim().toLowerCase();
+    const productRows = document.querySelectorAll(".product-row");
+
+    productRows.forEach(function (row) {
+      const productName = row.querySelector(".font-medium").textContent.toLowerCase();
+
+      if (productName.includes(searchValue)) {
+        row.style.display = "whitespace-nowrap";
+      } else {
+        row.style.display = "none";
+      }
+    });
+    if (searchValue === '') {
+      originalProductRows.forEach(function (row) {
+        row.style.display = ""; 
+      });
+    }
   });
 });

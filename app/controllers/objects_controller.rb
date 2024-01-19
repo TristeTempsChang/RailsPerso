@@ -1,3 +1,3 @@
-class ObjectController < ApplicationController
+class ObjectsController < ApplicationController
     
 end

@@ -76,3 +76,6 @@ gem 'dotenv-rails'
 gem 'webpacker', '~> 5.x'
 
 gem 'awesome_print'
+
+gem 'will_paginate'
+

@@ -4,7 +4,8 @@
             <button id="closeModalUpdate" class="text-black">X</button>
         </div>
         <h1 class="text-center font-semibold text-lg mb-4">Update form</h1>
-        <%= form_with(model: @crud, url: update_from_index_crud_index_path, method: :put) do |f| %>
+        <%= form_with(model: @crud, url: update_from_index_crud_index_path, method: :patch) do |f| %>
+        <%= f.hidden_field :product_id, value: nil, id: "product-id-input" %>
             <div class="mb-4">
                 <%= f.label :nom, class: "block text-gray-700 text-sm font-bold mb-2" %>
                 <%= f.text_field :nom, class: "rounded-lg border-gray-300" %>
@@ -16,7 +17,7 @@
             <%= f.hidden_field :date, value: Date.current %>
             <%= f.hidden_field :creationBy, value: @user.id %>
             <div class="flex items-center justify-center">
-                <%= f.submit "Ajouter", class: "bg-green-600 text-white p-3 rounded-lg" %>
+                <%= f.submit "Mettre à jour", class: "bg-green-600 text-white p-3 rounded-lg" %>
             </div>
         <% end %>
     </div>

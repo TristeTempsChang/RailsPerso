@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   #Routes for crud page
   resources :crud do
     collection do
+      get 'search_from_index'
       post 'create_from_index'
       delete 'delete_from_index'
       put 'update_from_index'
