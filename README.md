@@ -11,3 +11,5 @@ Liste de choses restantes à faire :
 - Valeur dynamique du git repo view
 - style pagination
 - Ajout changement mot de passe
+- Sécuriser les actions sur la db (Création user avec des droits limités)
+- Fix potentiel risque de failles xss et injection sql
